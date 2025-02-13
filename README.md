@@ -21,8 +21,6 @@ Floating hearts animation for an aesthetic effect.
 The necessary links to external CSS and JavaScript files.
 
 Key Elements in index.html
-
-<h1>Click Here!</h1>
 <div class="container">  
     <div class="valentines">
         <div class="envelope"></div>
