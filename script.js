@@ -1,21 +1,36 @@
 // Wait until the document (HTML) is fully loaded before executing the script
 $(document).ready(function () {
   $(".envelope").click(function () {
-    $(this).toggleClass("open"); // Toggle "open" class on the envelope
-    $(this).off("click");
-  });
+    if ($(this).hasClass("open") && $(".card").hasClass("before")) {
+      // If envelope is open and card is out, close both in order
 
-  // When the mouse enters the main container, the card slides up
-  $(".container").click(function () {
-    if ($(".envelope").hasClass("open")) {
-      $(".container").click(function () {
-        $(".card").stop().animate(
+      $(".card").stop().animate(
           {
-            top: "-90px", // Moves the card up by 90px
+            top: "5px", // Move the card back down first
           },
-          "slow"
+          "slow",
+          function () {
+            // Once the card animation completes, close the envelope flap
+            $(".card").removeClass("before"); // Mark the card as inside
+            $(".envelope").removeClass("open"); // Close the envelope flap
+          }
         );
-      });
+    } else if (!$(this).hasClass("open") && !$(".card").hasClass("before")) {
+      // If the envelope is closed and the card is inside, open both in order
+
+      $(".envelope").addClass("open"); // Open the envelope flap first
+
+      setTimeout(function () {
+        $(".card").stop().animate(
+            {
+              top: "-90px", // Move the card up after the flap opens
+            },
+            "slow",
+            function () {
+              $(".card").addClass("before"); // Mark the card as out
+            }
+          );
+      }, 400); // Delay for a smooth transition
     }
   });
 });
