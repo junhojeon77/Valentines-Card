@@ -129,13 +129,3 @@ CSS - For designing the envelope, card, animations, and effects.
 
 JavaScript (jQuery) - For interactivity (click animations).
 
-Possible Improvements
-
-Add a reset button to close the envelope after opening.
-
-Allow multiple messages inside the card.
-
-Add sound effects for a more immersive experience.
-
-Enjoy your Valentine's Day animation! 💖
-
